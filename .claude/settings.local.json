@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mv E:/Claude_Agent_Skill/.claude/skills/backend-design/backend.md E:/Claude_Agent_Skill/.claude/skills/backend.md)",
+      "Bash(mv E:/Claude_Agent_Skill/.claude/skills/frontend-design/frontend.md E:/Claude_Agent_Skill/.claude/skills/frontend.md)",
+      "Bash(mv E:/Claude_Agent_Skill/.claude/skills/database-design/database.md E:/Claude_Agent_Skill/.claude/skills/database.md)",
+      "Bash(rmdir E:/Claude_Agent_Skill/.claude/skills/backend-design E:/Claude_Agent_Skill/.claude/skills/frontend-design E:/Claude_Agent_Skill/.claude/skills/database-design)"
+    ]
+  }
+}

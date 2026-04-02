@@ -1,0 +1,67 @@
+{
+  "model": "claude-sonnet-4-6",
+
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(npx tsc*)",
+      "Bash(npx eslint*)",
+      "Bash(npx prettier*)",
+      "Bash(npx vitest*)",
+      "Bash(git status)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git add*)",
+      "Bash(git commit*)",
+      "Bash(git checkout*)",
+      "Bash(git branch*)",
+      "Bash(docker compose*)",
+      "Bash(docker build*)",
+      "Bash(docker ps*)",
+      "Bash(docker logs*)",
+      "Read(**)",
+      "Edit(**)",
+      "Write(**)",
+      "Glob(**)",
+      "Grep(**)"
+    ],
+    "deny": [
+      "Bash(git push --force*)",
+      "Bash(git reset --hard*)",
+      "Bash(rm -rf*)",
+      "Bash(DROP TABLE*)",
+      "Bash(curl * | bash)",
+      "Bash(wget * -O- | sh)"
+    ]
+  },
+
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh .claude/hooks/post-edit.sh \"$CLAUDE_FILE_PATH\""
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"[Claude] Running: $CLAUDE_TOOL_INPUT\""
+          }
+        ]
+      }
+    ]
+  },
+
+  "env": {
+    "CLAUDE_PROJECT_NAME": "myapp",
+    "CLAUDE_PROJECT_ENV": "development"
+  }
+}
